@@ -1,0 +1,73 @@
+/**
+ * Created by dell on 06/03/2015.
+ */
+/*
+Leer la teoria basica de los numeros romanos, e implementa un convertidor de numeros enteros a romanos y viceversa
+Se debe respetar las reglas de escritura, por ejmeplo si al programa ingreso 400, este no debe de arrojar CCCC, sino CD, de igual manera
+si ingreso el numero 14, el programa debe arrojar XIV y no X1111. o si se ingresa el numero 19 , el programa no debe arrojar
+XIIII ni IIIIIIIII, sino XIX.
+El programa debe poder calcular el rango de 1 al 3888  */
+
+
+//Definir variables
+def romanos = ['I','IV','V','IX','X', 'XL','L','XC', 'C','CD', 'D','CM','M']
+def valores = [1,    4,   5,9,10,40,50,90,100,400,500,900,1000]
+def numeroEntero=3888
+def numeroRomano=["MMMDCCCLXXXVIII"]
+def resultado=""
+
+//Leer numero
+//Scanner sc = new Scanner(System.in)
+//numeroEntero = sc.nextInt();
+
+
+def convertirARomano= {
+    while (numeroEntero != 0) {
+        for (def i = 0; i < romanos.size(); i++) {
+            while ((valores[i] <= numeroEntero && valores[i + 1] > numeroEntero) || (valores[i] <= numeroEntero && i == valores.size() - 1)) {
+                resultado = resultado + romanos[i]
+                numeroEntero = numeroEntero - valores[i]
+
+            }
+
+        }
+    }
+    println resultado
+}
+
+
+/*
+def convertirAArabigo= {
+    def resultado2=0
+    maximo = numeroRomano.size()
+    def caracter, caracter2
+
+    for (def i = 0; i < (maximo-1); i++) {
+        caracter = numeroRomano[i]
+        caracter2= numeroRomano[i+1]
+
+        if (caracter< caracter2)
+            resultado2 = resultado2 - caracter
+        else
+            resultado2 = resultado2 + caracter
+
+    }
+    resultado2 = resultado2 + caracter2
+}
+
+
+
+
+if (numeroEntero>0&&numeroEntero<=3888)
+    convertirARomano()
+    else
+    print "Ingrese un nunero dentro del rango (1..3888)"
+
+convertirAArabigo()
+
+*/
+
+
+
+
+
