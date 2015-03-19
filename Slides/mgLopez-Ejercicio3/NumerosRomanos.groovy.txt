@@ -1,25 +1,10 @@
-/**
- * Created by dell on 06/03/2015.
- */
-/*
-Leer la teoria basica de los numeros romanos, e implementa un convertidor de numeros enteros a romanos y viceversa
-Se debe respetar las reglas de escritura, por ejmeplo si al programa ingreso 400, este no debe de arrojar CCCC, sino CD, de igual manera
-si ingreso el numero 14, el programa debe arrojar XIV y no X1111. o si se ingresa el numero 19 , el programa no debe arrojar
-XIIII ni IIIIIIIII, sino XIX.
-El programa debe poder calcular el rango de 1 al 3888  */
-
-
-//Definir variables
 def romanos = ['I','IV','V','IX','X', 'XL','L','XC', 'C','CD', 'D','CM','M']
-def valores = [1,    4,   5,9,10,40,50,90,100,400,500,900,1000]
-def numeroEntero=3888
-def numeroRomano=["MMMDCCCLXXXVIII"]
-def resultado=""
+def valores = [1, 4,5,9,10,40,50,90,100,400,500,900,1000]
+def numeroEntero = 3888
+def numeroRomano = 'MMMDCCCLXXXV'
+def resultado=''
 
-//Leer numero
-//Scanner sc = new Scanner(System.in)
-//numeroEntero = sc.nextInt();
-
+ println numeroEntero
 
 def convertirARomano= {
     while (numeroEntero != 0) {
@@ -27,47 +12,39 @@ def convertirARomano= {
             while ((valores[i] <= numeroEntero && valores[i + 1] > numeroEntero) || (valores[i] <= numeroEntero && i == valores.size() - 1)) {
                 resultado = resultado + romanos[i]
                 numeroEntero = numeroEntero - valores[i]
-
             }
-
         }
     }
-    println resultado
+    println "La conversión del numero ENTERO" + "a ROMANO es: ${resultado}"
 }
 
 
-/*
-def convertirAArabigo= {
-    def resultado2=0
-    maximo = numeroRomano.size()
-    def caracter, caracter2
+def mapa = [M : 1000, CM : 900,D : 500, CD : 400, C : 100, XC : 90,  L : 50, XL : 40, X : 10, IX : 9, V : 5, IV : 4, I : 1]
+def comp = 0
 
-    for (def i = 0; i < (maximo-1); i++) {
-        caracter = numeroRomano[i]
-        caracter2= numeroRomano[i+1]
+def convertirAArabigo ={
+numeroEntero=0
+    numeroRomano.reverse().each {
+        if(mapa.containsKey(it)){
+            for (def ciclo in mapa){
+                (mapa.get(it) >= comp) ? (numeroEntero += mapa.get(it)) : (numeroEntero -= mapa.get(it))
+                comp = mapa.get(it)
+                return
+            }
+ 
+        }
+             
+        }
+        println "La conversión del numero ROMANO ${numeroRomano} a  ARABIGO es: ${numeroEntero}"
 
-        if (caracter< caracter2)
-            resultado2 = resultado2 - caracter
-        else
-            resultado2 = resultado2 + caracter
-
-    }
-    resultado2 = resultado2 + caracter2
 }
-
-
-
 
 if (numeroEntero>0&&numeroEntero<=3888)
     convertirARomano()
+  
     else
-    print "Ingrese un nunero dentro del rango (1..3888)"
+    print "Ingrese un numero dentro del rango (1..3888)"
 
-convertirAArabigo()
-
-*/
-
-
-
-
-
+ 
+ convertirAArabigo()
+ 
